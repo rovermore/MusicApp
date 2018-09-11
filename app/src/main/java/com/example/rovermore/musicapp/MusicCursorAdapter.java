@@ -22,16 +22,15 @@ public class MusicCursorAdapter extends CursorAdapter {
 
         View row = LayoutInflater.from(context).inflate(R.layout.list_item, parent);
 
-
         return row;
     }
 
     @Override
     public void bindView(View view, final Context context, final Cursor cursor) {
 
-        final TextView artistView = (TextView) view.findViewById(R.id.artist_name);
-        final TextView songView = (TextView) view.findViewById(R.id.song_name);
-        TextView albumView = (TextView) view.findViewById(R.id.album_name);
+        final TextView artistView = view.findViewById(R.id.artist_name);
+        final TextView songView = view.findViewById(R.id.song_name);
+        TextView albumView = view.findViewById(R.id.album_name);
 
         artistView.setText(cursor.getColumnIndexOrThrow(MusicContract.MusicEntry.ARTIST));
         songView.setText(cursor.getColumnIndexOrThrow(MusicContract.MusicEntry.SONG));
@@ -49,13 +48,13 @@ public class MusicCursorAdapter extends CursorAdapter {
                 String search = searchBuilder(artistView, songView);
 
                 Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-                intent.putExtra(SearchManager.QUERY,search);
+                intent.putExtra(SearchManager.QUERY, search);
                 context.startActivity(intent);
             }
         });
     }
 
-    private String searchBuilder(TextView artist, TextView song ) {
+    private String searchBuilder(TextView artist, TextView song) {
 
         StringBuilder searchBuilder = (StringBuilder) artist.getText();
         searchBuilder.append(" - ");
