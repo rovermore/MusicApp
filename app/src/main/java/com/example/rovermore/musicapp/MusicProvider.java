@@ -101,6 +101,8 @@ public class MusicProvider extends ContentProvider {
 
                     idNewRow = database.insert(MusicContract.MusicEntry.TABLE_NAME, null, contentValues);
 
+                    getContext().getContentResolver().notifyChange(uri,null);
+
                     return ContentUris.withAppendedId(MusicContract.MusicEntry.CONTENT_URI, idNewRow);
 
                 default:

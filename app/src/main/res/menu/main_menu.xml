@@ -8,11 +8,11 @@
     <item
         android:title="Intert dummy data"
         android:id="@+id/insert_dummy_data"
-        app:showAsAction="never"/>
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/delete_all"
-        android:title="delete_all"
-        app:showAsAction="ifRoom"/>
+        android:title="delete all"
+        app:showAsAction="never"/>
 
 
 </menu>
