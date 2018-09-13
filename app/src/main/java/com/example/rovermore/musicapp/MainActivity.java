@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 //TODO: set a intent to open DetailActivity
                 Intent intent = new Intent(MainActivity.this,DetailActivity.class);
                 startActivity(intent);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

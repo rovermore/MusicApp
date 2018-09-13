@@ -1,9 +1,11 @@
 package com.example.rovermore.musicapp;
 
 import android.app.SearchManager;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,13 +58,27 @@ public class MusicCursorAdapter extends CursorAdapter {
                 context.startActivity(intent);
             }
         });
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //set an intent to the item clicked in the list
+                Uri uri = ContentUris.withAppendedId(MusicContract.MusicEntry.CONTENT_URI,id);
+                Intent intent = new Intent(context,DetailActivity.class);
+                intent.setData(uri);
+                context.startActivity(intent);
+            }
+        });
     }
 
     private String searchBuilder(TextView artist, TextView song) {
 
-        StringBuilder searchBuilder = (StringBuilder) artist.getText();
+        StringBuilder searchBuilder = new StringBuilder();
+        String mArtist = String.valueOf(artist.getText());
+        String mSong = String.valueOf(song.getText());
+        searchBuilder.append(mArtist);
         searchBuilder.append(" - ");
-        searchBuilder.append(song.getText());
+        searchBuilder.append(mSong);
 
         String search = searchBuilder.toString();
 
