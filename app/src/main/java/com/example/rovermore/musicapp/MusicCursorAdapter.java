@@ -43,7 +43,7 @@ public class MusicCursorAdapter extends CursorAdapter {
         int position = cursor.getPosition();
         final long id = getItemId(position);
 
-        Button play = (Button) view.findViewById(R.id.play_button);
+        Button play = (Button) view.findViewById(R.id.play_button_main);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override

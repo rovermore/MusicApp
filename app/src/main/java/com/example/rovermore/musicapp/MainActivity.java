@@ -2,6 +2,7 @@ package com.example.rovermore.musicapp;
 
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        insertDummyData();
 
         musicDbHelper = new MusicDbHelper(this);
 
@@ -102,6 +101,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             case R.id.delete_all:
                 showDeleteAllDialog();
                 return true;
+            case R.id.add_music:
+                //TODO: set a intent to open DetailActivity
+                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+                startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

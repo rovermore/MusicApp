@@ -3,12 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".MainActivity">>
+    tools:context=".MainActivity">
 
+    <item
+        android:title="ADD"
+        app:showAsAction="always"
+        android:id="@+id/add_music"/>
     <item
         android:title="Intert dummy data"
         android:id="@+id/insert_dummy_data"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
     <item
         android:id="@+id/delete_all"
         android:title="delete all"
