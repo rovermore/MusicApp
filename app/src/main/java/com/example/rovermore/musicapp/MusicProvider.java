@@ -101,7 +101,7 @@ public class MusicProvider extends ContentProvider {
 
                     idNewRow = database.insert(MusicContract.MusicEntry.TABLE_NAME, null, contentValues);
 
-                    return Uri.parse(MusicContract.MusicEntry.CONTENT_URI + String.valueOf(idNewRow));
+                    return ContentUris.withAppendedId(MusicContract.MusicEntry.CONTENT_URI, idNewRow);
 
                 default:
                     throw new IllegalStateException("Unknown URI " + uri + " with match " + match);

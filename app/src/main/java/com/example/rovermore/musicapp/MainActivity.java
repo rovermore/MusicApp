@@ -2,11 +2,13 @@ package com.example.rovermore.musicapp;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     };
     MusicCursorAdapter musicCursorAdapter;
 
+    MusicDbHelper musicDbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +30,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         insertDummyData();
 
-        ListView listItemView = findViewById(R.id.list_item);
+        musicDbHelper = new MusicDbHelper(this);
+
+        musicCursorAdapter = new MusicCursorAdapter(this, null);
+
+        ListView listItemView = findViewById(R.id.list_view);
 
         listItemView.setAdapter(musicCursorAdapter);
+
+        listItemView.setEmptyView(findViewById(R.id.empty_view));
 
         getSupportLoaderManager().initLoader(0, null, this);
 
@@ -39,9 +49,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         ContentValues contentValues = new ContentValues();
         contentValues.put(MusicContract.MusicEntry.ARTIST, "Oasis");
         contentValues.put(MusicContract.MusicEntry.SONG,"Morning Glory");
-        contentValues.put(MusicContract.MusicEntry.ALBUM,"Morning glory");
+        contentValues.put(MusicContract.MusicEntry.ALBUM,"Whats the story");
 
-        getBaseContext().getContentResolver().insert(MusicContract.MusicEntry.CONTENT_URI,contentValues);
+        Uri newMusicIserted = getBaseContext().getContentResolver().insert(MusicContract.MusicEntry.CONTENT_URI,contentValues);
 
     }
 
@@ -69,4 +79,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         musicCursorAdapter.swapCursor(null);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
 }

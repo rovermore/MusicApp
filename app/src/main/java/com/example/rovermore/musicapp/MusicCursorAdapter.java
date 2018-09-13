@@ -14,13 +14,13 @@ import android.widget.TextView;
 public class MusicCursorAdapter extends CursorAdapter {
 
     public MusicCursorAdapter(Context context, Cursor c) {
-        super(context, c);
+        super(context, c,0);
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
 
-        View row = LayoutInflater.from(context).inflate(R.layout.list_item, parent);
+        View row = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
 
         return row;
     }
@@ -32,9 +32,13 @@ public class MusicCursorAdapter extends CursorAdapter {
         final TextView songView = view.findViewById(R.id.song_name);
         TextView albumView = view.findViewById(R.id.album_name);
 
-        artistView.setText(cursor.getColumnIndexOrThrow(MusicContract.MusicEntry.ARTIST));
-        songView.setText(cursor.getColumnIndexOrThrow(MusicContract.MusicEntry.SONG));
-        albumView.setText(cursor.getColumnIndexOrThrow(MusicContract.MusicEntry.ALBUM));
+        String artistText = cursor.getString(cursor.getColumnIndexOrThrow(MusicContract.MusicEntry.ARTIST));
+        String songText = cursor.getString(cursor.getColumnIndexOrThrow(MusicContract.MusicEntry.SONG));
+        String albumText = cursor.getString(cursor.getColumnIndexOrThrow(MusicContract.MusicEntry.ALBUM));
+
+        artistView.setText(artistText);
+        songView.setText(songText);
+        albumView.setText(albumText);
 
         int position = cursor.getPosition();
         final long id = getItemId(position);

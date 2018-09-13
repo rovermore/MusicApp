@@ -10,7 +10,7 @@ public class MusicContract {
 
     }
 
-    public static final String CONTENT_AUTHORITY = "com.example.rovermore.musicdb";
+    public static final String CONTENT_AUTHORITY = "com.example.rovermore.musicapp";
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public static final String PATH_MUSIC = "music";
 
