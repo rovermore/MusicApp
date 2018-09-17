@@ -139,7 +139,7 @@ public class DetailActivity extends AppCompatActivity implements LoaderManager.L
                     return true;
                 }
                 return true;
-            case R.id.home:
+            case android.R.id.home:
                 //checks if any field was changed and opens dialog in case is not saved
                 if (!musicHasBeenTouched) {
                     NavUtils.navigateUpFromSameTask(DetailActivity.this);
